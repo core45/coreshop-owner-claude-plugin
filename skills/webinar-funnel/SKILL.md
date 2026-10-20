@@ -5,7 +5,7 @@ description: Plan the content around one webinar in a Coreshop shop through its 
 
 # Webinar funnel
 
-Tools used: `get_shop_context`, `list_webinars`, `get_webinar`, `list_webinar_parts`, `create_posts`, `create_faqs`, `attach_faq`, `create_banner`, `set_banner_window`, `generate_post_images`, `translate_post`, `get_operation`, `publish_post`, `activate_banner`
+Tools used: `get_shop_context`, `list_webinars`, `get_webinar`, `list_webinar_parts`, `create_posts`, `create_faqs`, `attach_faq`, `create_banner`, `set_banner_window`, `update_post`, `upload_image`, `publish_post`, `activate_banner`
 
 Requires shop context schema_version 2 or later, with the capability webinars.
 
@@ -33,10 +33,14 @@ Requires shop context schema_version 2 or later, with the capability webinars.
 - [ ] banner with `create_banner`, with a window ending when the webinar starts (`set_banner_window`)
 - [ ] show the owner every panel edit link
 
-## 5. Optional AI jobs (they cost the shop money)
+## 5. Translations and images (you do the work)
 
-- `generate_post_images` and `translate_post` only for the capabilities `get_shop_context` lists; follow each
-  with `get_operation`.
+- Write the translations for the other active locales yourself (title, slug, excerpt, main_text, seo_title,
+  seo_description, seo_keywords) and save them in `create_posts` or with `update_post` (`post_id`,
+  `expected_version`, per-locale `translations`; a new language needs a title).
+- Images: ask the owner for images and add them with `upload_image`, or leave the posts without.
+- Never use the shop's own AI tools (image generation, translation, SEO) unless the owner explicitly asks;
+  they cost the shop money.
 
 ## 6. Publish only when asked
 

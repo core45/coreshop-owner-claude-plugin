@@ -5,7 +5,7 @@ description: Plan, research and draft an SEO blog series for a Coreshop shop thr
 
 # SEO blog series
 
-Tools used: `get_shop_context`, `list_posts`, `get_post`, `create_posts`, `generate_post_images`, `translate_post`, `generate_post_seo`, `get_operation`, `publish_post`
+Tools used: `get_shop_context`, `list_posts`, `get_post`, `create_posts`, `update_post`, `upload_image`, `publish_post`
 
 Requires shop context schema_version 2 or later, with the capability posts.
 
@@ -38,7 +38,7 @@ Checklist per post:
 - [ ] title under 60 characters, with the main keyword
 - [ ] excerpt of one or two sentences
 - [ ] body with headings, short paragraphs and one clear next step for the reader
-- [ ] meta title and meta description
+- [ ] SEO fields written by you: seo_title (under 60 characters), seo_description (under 160) and seo_keywords
 - [ ] only facts the shop provides; no claim that `content_rules` forbids
 - [ ] written in the default locale
 
@@ -47,12 +47,18 @@ Checklist per post:
 - Create all posts in one `create_posts` call. Say `format` `markdown` if you wrote Markdown.
 - Show the owner every panel edit link the result returns.
 
-## 6. Optional AI jobs (they cost the shop money)
+## 6. Other languages and images
 
-- Offer them only for the capabilities `get_shop_context` lists: `post_ai_images` (`generate_post_images`),
-  `post_ai_translation` (`translate_post`, for the other locales), `post_ai_seo` (`generate_post_seo`).
-- Each returns an operation id: call `get_operation` every 20 to 30 seconds until it has succeeded or failed.
-- On `spend_cap_not_set` or `spend_cap_reached`, tell the owner to check the monthly AI cap on the access page.
+- Write the translations for the other active locales (listed by `get_shop_context`) yourself: natural, not
+  word-for-word, same facts, localized slug. Each locale needs title, slug, excerpt, main_text and the SEO
+  fields.
+- Save them with `update_post` per post (post_id, expected_version from the create result, `translations`
+  per locale; a new language needs a title), or include them in `create_posts`.
+- Images: ask the owner for images and upload them with `upload_image`, then put the returned embed_html in
+  the body; or leave the post without images.
+- Never use the shop's own AI tools for text, translation, SEO or images unless the owner explicitly asks;
+  they cost the shop money. If the owner asks for a shop-generated image, say it is a paid feature and the
+  owner must first set a monthly AI cap on the "Claude & API access" page.
 
 ## 7. Publish only when asked
 

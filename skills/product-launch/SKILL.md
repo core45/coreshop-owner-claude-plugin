@@ -5,7 +5,7 @@ description: Prepare launch content for one product in a Coreshop shop through i
 
 # Product launch
 
-Tools used: `get_shop_context`, `list_products`, `get_product`, `create_posts`, `create_faqs`, `attach_faq`, `create_banner`, `set_banner_window`, `generate_post_images`, `translate_post`, `get_operation`, `publish_post`, `activate_banner`
+Tools used: `get_shop_context`, `list_products`, `get_product`, `create_posts`, `update_post`, `upload_image`, `create_faqs`, `attach_faq`, `create_banner`, `set_banner_window`, `publish_post`, `activate_banner`
 
 Requires shop context schema_version 3 or later, with the capability products.
 
@@ -34,10 +34,16 @@ Requires shop context schema_version 3 or later, with the capability products.
 - [ ] banner with `create_banner`; with a launch date, a window with `set_banner_window`
 - [ ] show the owner every panel edit link
 
-## 5. Optional AI jobs (they cost the shop money)
+## 5. Translations, SEO and images
 
-- Offer `generate_post_images` and `translate_post` only for the capabilities `get_shop_context` lists;
-  follow each with `get_operation`.
+- Write the translations for the other active locales yourself and save them with `update_post` (or directly
+  in `create_posts`). A new language needs a title. For FAQs and banners use their own translations fields
+  when the existing text uses them. Write the SEO fields (`seo_title`, `seo_description`, `seo_keywords`)
+  yourself too.
+- Images: ask the owner for images and add them with `upload_image`, or leave the post without.
+- Never use the shop's own AI tools: they cost the shop money. Only if the owner explicitly asks for a
+  shop-generated image, mention that the shop can generate images for a fee and that the owner must first set
+  a monthly AI cap on the "Claude & API access" page.
 
 ## 6. Go live only when asked
 

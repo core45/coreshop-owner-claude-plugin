@@ -1,6 +1,6 @@
 {
     "name": "coreshop-owner",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Recipes for running a Coreshop shop from Claude Code through the shop's MCP server: SEO blog series, product launches and webinar funnels. Needs the shop connected first (Claude & API access page).",
     "author": {
         "name": "core45"
