@@ -1,0 +1,14 @@
+{
+    "name": "coreshop-owner",
+    "description": "The coreshop-owner Claude Code plugin: recipes for running a Coreshop shop through its MCP server.",
+    "owner": {
+        "name": "core45"
+    },
+    "plugins": [
+        {
+            "name": "coreshop-owner",
+            "source": "./",
+            "description": "Recipes for running a Coreshop shop from Claude Code through the shop's MCP server."
+        }
+    ]
+}
